@@ -28,6 +28,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CompanyListingsScreen(
+    navController: NavController,
     viewModel: CompanyListingsViewModel = hiltViewModel()
 ) {
     val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = viewModel.state.isRefreshing)
