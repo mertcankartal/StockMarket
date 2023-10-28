@@ -1,8 +1,10 @@
 package com.example.stockmarket
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -17,6 +19,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.stockmarket.common.ui.theme.StockMarketTheme
 import com.example.stockmarket.presentation.Screen
+import com.example.stockmarket.presentation.company_info.CompanyInfoScreen
 import com.example.stockmarket.presentation.company_list.CompanyListingsScreen
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.spec.NavGraphSpec
@@ -24,6 +27,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -39,6 +43,7 @@ class MainActivity : ComponentActivity() {
                         startDestination = Screen.CompanyScreen.route
                     ) {
                         composable(Screen.CompanyScreen.route) { CompanyListingsScreen(navController = navController)}
+                        composable(Screen.CompanyInfoScreen.route + "/{symbol}") { CompanyInfoScreen()}
                     }
                 }
             }

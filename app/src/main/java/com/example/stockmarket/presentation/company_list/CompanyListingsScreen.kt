@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.stockmarket.common.components.CompanyItem
+import com.example.stockmarket.presentation.Screen
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.ramcosta.composedestinations.annotation.Destination
@@ -60,7 +61,7 @@ fun CompanyListingsScreen(
                 items(state.companyList.size) { i ->
                     val company = state.companyList[i]
                     CompanyItem(company = company, modifier = Modifier.fillMaxWidth().clickable {
-                        // TODO: Navigate
+                        navController.navigate(Screen.CompanyInfoScreen.route + "/${company.symbol}")
                     }.padding(12.dp))
                     if (i < state.companyList.size) {
                         Divider(modifier = Modifier.padding(horizontal = 16.dp))
